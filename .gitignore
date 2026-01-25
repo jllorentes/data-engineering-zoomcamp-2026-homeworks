@@ -17,7 +17,7 @@ eggs/
 lib/
 lib64/
 parts/
-sdist/
+20: sdist/
 var/
 wheels/
 share/python-wheels/
@@ -253,3 +253,4 @@ terraform.rc
 # planout
 
 *.json
+*.parquet
