@@ -1,7 +1,6 @@
 ## Question 1
 
-bash
-```
+```bash
 docker run -it \
     --rm \
     -v $(pwd)/test:/app/test \
@@ -9,28 +8,30 @@ docker run -it \
     python:3.13
 ```
 
-bash
-```
+```bash
 pip --version
 ```
 
-Response: pip 25.3 from /usr/local/lib/python3.13/site-packages/pip (python 3.13)
+Answer: pip 25.3 from /usr/local/lib/python3.13/site-packages/pip (python 3.13)
 
 ## Question 2
-Response: db:5432
+Answer: db:5432
 
 ## Question 3
 Query:
+```bash
 select count(1)
 from public.green_taxi_data
 where lpep_pickup_datetime between '2025-11-01' and '2025-12-01'
 	and trip_distance <= 1
 ;
+```
 
-Response: 8,007
+Answer: 8,007
 
 ## Question 4
 Query:
+```bash
 with filtered_days as (
 	select *
 	from public.green_taxi_data
@@ -47,11 +48,13 @@ from longest_dist ld
 order by ld.distance Desc
 limit 2
 ;
+```
 
-Response: 2025-11-14, 88.03
+Answer: 2025-11-14, 88.03
 
 ## Question 5
 Query:
+```bash
 with selected_day as (
 	select gt.index
 		, gt.total_amount
@@ -66,11 +69,13 @@ from selected_day
 group by trip_zone
 order by total_zone DESC
 ;
+```
 
-Response: East Harlem North, 9281.92
+Answer: East Harlem North, 9281.92
 
 ## Question 6
-
+Query:
+```bash
 with filtered_data as (
 	select gt.index
 		, gt.trip_distance
@@ -86,10 +91,13 @@ from filtered_data fd
 group by do_zone_name
 order by max_trip DESC
 ;
+```
 
-Response: Upper East Side North, 2887.52
+Answer: Upper East Side North, 2887.52
 
 Anyway, IMO the question is not clear enough, and the query should be:
+Query:
+```bash
 select gt.trip_distance
 	, dotz."Zone" as do_zone_name
 from public.green_taxi_data gt
@@ -98,5 +106,6 @@ join public.taxi_zones dotz on gt."DOLocationID" = dotz."LocationID"
 where putz."Zone" = 'East Harlem North'
 order by trip_distance desc
 ;
+```
 
-Response: 26.21, Coney Island
+Answer: 26.21, Coney Island
