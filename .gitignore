@@ -254,3 +254,6 @@ terraform.rc
 
 *.json
 *.parquet
+
+# MacOS system files
+*.DS_Store
