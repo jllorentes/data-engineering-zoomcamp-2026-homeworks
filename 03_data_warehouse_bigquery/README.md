@@ -11,7 +11,7 @@ uv sync
 ```
 
 ```bash
-uv run python main.py
+uv run python load_yellow_taxi_data.py
 ```
 
 ** BigQuery setup
