@@ -9,3 +9,13 @@ services:
     # Si usas Podman en Linux y tienes problemas de permisos de escritura, 
     # descomenta la siguiente línea para que el usuario del contenedor coincida con el tuyo:
     # user: "${UID}:${GID}"
+
+  duckdb-cli:
+    image: duckdb/duckdb:latest
+    # Mapeamos al directorio /data interno
+    volumes:
+      - ./:/data
+    # Establecemos el directorio de trabajo para que al entrar estemos ahí
+    working_dir: /data
+    # IMPORTANTE: No ponemos entrypoint ni command aquí.
+    # Usaremos "docker-compose run" para invocarlo.

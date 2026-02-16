@@ -19,3 +19,8 @@ dbt run
 dbt test
 ```
 * Since we are using Containers (Podman) and volumes, any changes we make to our .sql templates in our local code editor will be immediately reflected inside the container.
+
+* Access Duckdb UI:
+```bash
+docker-compose exec duckdb-cli duckdb /data/taxi_rides_ny.duckdb
+```
