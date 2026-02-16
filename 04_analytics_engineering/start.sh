@@ -10,7 +10,7 @@ echo "🚀 Iniciando entorno dbt + DuckDB con Podman..."
 
 # 1. Levantar el contenedor en segundo plano (detached)
 # Usamos docker-compose para orquestar (podman-compose si lo tienes aliasado)
-docker-compose up -d --build
+docker compose up -d --build
 
 echo "📦 Contenedor 'dbt-duckdb' levantado y corriendo."
 
@@ -23,7 +23,7 @@ else
     echo "⏳ Ejecutando script de ingestión de datos (esto puede tardar unos minutos)..."
     
     # Ejecutar el script de python DENTRO del contenedor
-    docker-compose exec dbt-duckdb python ingest_data.py
+    docker compose exec dbt-duckdb python ingest_data.py
     
     echo "✅ Ingestión completada. Base de datos creada."
 fi
@@ -33,7 +33,7 @@ echo "🛠  Verificando conexión dbt..."
 
 # Asumimos que el proyecto dbt está en la subcarpeta taxi_rides_ny
 # --project-dir le dice a dbt dónde buscar el dbt_project.yml
-docker-compose exec dbt-duckdb dbt debug --project-dir taxi_rides_ny
+docker compose exec dbt-duckdb dbt debug --project-dir taxi_rides_ny
 
 echo "----------------------------------------------------------------"
 echo "🎉 ¡Todo listo!"
@@ -48,4 +48,4 @@ echo "Escribe 'exit' para salir."
 echo "----------------------------------------------------------------"
 
 # 4. Abrir shell interactiva
-docker-compose exec dbt-duckdb /bin/bash
+docker compose exec dbt-duckdb /bin/bash
