@@ -1,0 +1,11 @@
+services:
+  dbt-duckdb:
+    container_name: dbt_duckdb_env
+    build: .
+    volumes:
+      - ./:/usr/app
+    environment:
+      - DBT_PROFILES_DIR=/usr/app
+    # Si usas Podman en Linux y tienes problemas de permisos de escritura, 
+    # descomenta la siguiente línea para que el usuario del contenedor coincida con el tuyo:
+    # user: "${UID}:${GID}"

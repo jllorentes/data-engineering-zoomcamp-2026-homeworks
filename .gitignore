@@ -257,3 +257,6 @@ terraform.rc
 
 # MacOS system files
 *.DS_Store
+
+# DuckDB database files
+*.duckdb
